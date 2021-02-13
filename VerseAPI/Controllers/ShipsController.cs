@@ -42,8 +42,6 @@ namespace VerseAPI.Controllers
         }
 
         // PUT: api/Ships/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutShip(long id, Ship ship)
         {
@@ -74,11 +72,32 @@ namespace VerseAPI.Controllers
         }
 
         // POST: api/Ships
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Ship>> PostShip(Ship ship)
+        public async Task<ActionResult<Ship>> PostShip(AddShipPayload payload)
         {
+            long newId = 0;
+
+            while (newId == 0 || ShipExists(newId))
+            {
+                var rnd = new Random().Next();
+                newId = Convert.ToInt64(rnd);
+            }
+
+            //convert payload into new ship with starting values
+            var ship = new Ship
+            {
+                Id = newId,
+                ShipName = payload.ShipName,
+                PilotName = payload.PilotName,
+                Credits = 5000,
+                Class = "Courier LLV",
+                Ore = 0,
+                Water = 0,
+                Fuel = 500,
+                Components = 0,
+                Capacity = 1000
+            };
+
             _context.Ship.Add(ship);
             await _context.SaveChangesAsync();
 
