@@ -10,6 +10,7 @@ namespace VerseAPI.Models
         public long Id { get; set; }
         public string ShipName { get; set; }
         public string PilotName { get; set; }
+        public long Credits { get; set; }
         public string Class { get; set; }
         public long Ore { get; set; }
         public long Water { get; set; }

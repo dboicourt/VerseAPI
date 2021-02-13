@@ -42,8 +42,6 @@ namespace VerseAPI.Controllers
         }
 
         // PUT: api/Planets/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlanet(long id, Planet planet)
         {
@@ -74,8 +72,6 @@ namespace VerseAPI.Controllers
         }
 
         // POST: api/Planets
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Planet>> PostPlanet(Planet planet)
         {
