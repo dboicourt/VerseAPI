@@ -73,8 +73,28 @@ namespace VerseAPI.Controllers
 
         // POST: api/Planets
         [HttpPost]
-        public async Task<ActionResult<Planet>> PostPlanet(Planet planet)
+        public async Task<ActionResult<Planet>> PostPlanet(AddPlanetPayload payload)
         {
+            //generate unique ID
+            long newId = 0;
+
+            while (newId == 0 || PlanetExists(newId))
+            {
+                var rnd = new Random().Next();
+                newId = Convert.ToInt64(rnd);
+            }
+
+            //convert payload into new planet. Set 'market' price based on provided resource quantities
+            var planet = new Planet
+            {
+                Id = newId,
+                Name = payload.Name,
+                Ore = SetResourcePrice(payload.OreCount),
+                Water = SetResourcePrice(payload.WaterCount),
+                Fuel = SetResourcePrice(payload.FuelCount),
+                Components = SetResourcePrice(payload.ComponentsCount)
+            };
+
             _context.Planet.Add(planet);
             await _context.SaveChangesAsync();
 
@@ -100,6 +120,13 @@ namespace VerseAPI.Controllers
         private bool PlanetExists(long id)
         {
             return _context.Planet.Any(e => e.Id == id);
+        }
+
+        private PlanetResource SetResourcePrice(long resourceAmount)
+        {
+            //imitate simple market values here (higher supply = lower value)
+            var price = 100 - (long)Math.Round((decimal)(resourceAmount / 100));
+            return new PlanetResource { Amount = resourceAmount, Price = price };
         }
     }
 }
