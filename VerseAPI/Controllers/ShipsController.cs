@@ -75,6 +75,7 @@ namespace VerseAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Ship>> PostShip(AddShipPayload payload)
         {
+            //generate unique ID
             long newId = 0;
 
             while (newId == 0 || ShipExists(newId))
