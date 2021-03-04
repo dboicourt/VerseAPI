@@ -10,10 +10,13 @@ namespace VerseAPI.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public PlanetResource Ore { get; set; }
-        public PlanetResource Water { get; set; }
-        public PlanetResource Fuel { get; set; }
-        public PlanetResource Components { get; set; }
-
+        public long OrePrice { get; set; }
+        public long OreAmount { get; set; }
+        public long WaterPrice { get; set; }
+        public long WaterAmount { get; set; }
+        public long FuelPrice { get; set; }
+        public long FuelAmount { get; set; }
+        public long ComponentsPrice { get; set; }
+        public long ComponentsAmount { get; set; }
     }
 }
