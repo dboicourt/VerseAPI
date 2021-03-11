@@ -89,10 +89,13 @@ namespace VerseAPI.Controllers
             {
                 Id = newId,
                 Name = payload.Name,
-                Ore = SetResourcePrice(payload.OreCount),
-                Water = SetResourcePrice(payload.WaterCount),
-                Fuel = SetResourcePrice(payload.FuelCount),
-                Components = SetResourcePrice(payload.ComponentsCount)
+                OreAmount = payload.OreCount,
+                OrePrice = SetResourcePrice(payload.OreCount),
+                WaterAmount = payload.WaterCount,
+                WaterPrice = SetResourcePrice(payload.WaterCount),
+                FuelAmount = payload.FuelCount,
+                FuelPrice = SetResourcePrice(payload.FuelCount),
+                ComponentsPrice = SetResourcePrice(payload.ComponentsCount)
             };
 
             _context.Planet.Add(planet);
@@ -122,11 +125,11 @@ namespace VerseAPI.Controllers
             return _context.Planet.Any(e => e.Id == id);
         }
 
-        private PlanetResource SetResourcePrice(long resourceAmount)
+        private long SetResourcePrice(long resourceAmount)
         {
             //imitate simple market values here (higher supply = lower value)
             var price = 100 - (long)Math.Round((decimal)(resourceAmount / 100));
-            return new PlanetResource { Amount = resourceAmount, Price = price };
+            return price;
         }
     }
 }
