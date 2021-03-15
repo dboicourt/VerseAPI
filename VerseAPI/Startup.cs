@@ -23,6 +23,7 @@ namespace VerseAPI
             services.AddDbContext<VerseContext>(opt =>
             opt.UseInMemoryDatabase("VerseContext"));
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +39,12 @@ namespace VerseAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "The Verse API");
+            });
 
             app.UseEndpoints(endpoints =>
             {

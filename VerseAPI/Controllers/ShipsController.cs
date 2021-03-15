@@ -9,7 +9,7 @@ using VerseAPI.Models;
 
 namespace VerseAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Verse/[controller]")]
     [ApiController]
     public class ShipsController : ControllerBase
     {

@@ -9,7 +9,7 @@ using VerseAPI.Models;
 
 namespace VerseAPI.Controllers
 {
-    [Route("api/Market")]
+    [Route("Verse/Market")]
     [ApiController]
     public class MarketController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace VerseAPI.Controllers
             _context = context;
         }
 
-        [HttpPut]
+        [HttpPut("Purchase-")]
         public async Task<ActionResult<Ship>> PurchaseResources(PurchasePayload payload)
         {
             Planet planet = await _context.Planet.FindAsync(payload.PlanetID);
