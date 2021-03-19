@@ -20,14 +20,12 @@ namespace VerseAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Planets
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Planet>>> GetPlanet()
         {
             return await _context.Planet.ToListAsync();
         }
 
-        // GET: api/Planets/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Planet>> GetPlanet(long id)
         {
@@ -41,7 +39,6 @@ namespace VerseAPI.Controllers
             return planet;
         }
 
-        // PUT: api/Planets/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlanet(long id, Planet planet)
         {
@@ -71,7 +68,6 @@ namespace VerseAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Planets
         [HttpPost]
         public async Task<ActionResult<Planet>> PostPlanet(AddPlanetPayload payload)
         {
@@ -104,7 +100,6 @@ namespace VerseAPI.Controllers
             return CreatedAtAction("GetPlanet", new { id = planet.Id }, planet);
         }
 
-        // DELETE: api/Planets/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Planet>> DeletePlanet(long id)
         {
@@ -125,6 +120,7 @@ namespace VerseAPI.Controllers
             return _context.Planet.Any(e => e.Id == id);
         }
 
+        //takes value for resource amount and sets the appropriate cost
         private long SetResourcePrice(long resourceAmount)
         {
             //imitate simple market values here (higher supply = lower value)

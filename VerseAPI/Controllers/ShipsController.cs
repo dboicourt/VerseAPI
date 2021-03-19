@@ -20,7 +20,6 @@ namespace VerseAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Ships
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ship>>> GetShip()
         {
@@ -41,7 +40,6 @@ namespace VerseAPI.Controllers
             return ship;
         }
 
-        // PUT: api/Ships/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutShip(long id, Ship ship)
         {
@@ -71,7 +69,6 @@ namespace VerseAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Ships
         [HttpPost]
         public async Task<ActionResult<Ship>> PostShip(AddShipPayload payload)
         {
@@ -105,7 +102,6 @@ namespace VerseAPI.Controllers
             return CreatedAtAction("GetShip", new { id = ship.Id }, ship);
         }
 
-        // DELETE: api/Ships/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Ship>> DeleteShip(long id)
         {
