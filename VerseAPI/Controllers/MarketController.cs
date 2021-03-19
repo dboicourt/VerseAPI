@@ -19,7 +19,7 @@ namespace VerseAPI.Controllers
             _context = context;
         }
 
-        [HttpPut("Purchase-")]
+        [HttpPut("Purchase")]
         public async Task<ActionResult<Ship>> PurchaseResources(PurchasePayload payload)
         {
             Planet planet = await _context.Planet.FindAsync(payload.PlanetID);
@@ -91,6 +91,7 @@ namespace VerseAPI.Controllers
             return ship;
         }
 
+        //helper functions to unpack values
         public static void SetValue(object obj, string propertyName, object value)
         {
             obj.GetType().GetProperty(propertyName).SetValue(obj, value, null);
